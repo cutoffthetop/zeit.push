@@ -105,14 +105,14 @@ class ConnectionTest(zeit.push.testing.TestCase):
                 {'or': [{'tag': 'News'}], 'group': 'subscriptions'},
                 push.call_args_list[1][0][0].audience)
 
-    def test_raises_AttributeError_if_no_channel_given(self):
+    def test_raises_if_no_channel_given(self):
         api = self.connection()
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(ValueError):
             api.send('Being pushy.', 'http://example.com')
 
-    def test_raises_AttributeError_if_channel_not_in_product_config(self):
+    def test_raises_if_channel_not_in_product_config(self):
         api = self.connection()
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(ValueError):
             api.send('foo', 'any', channels='i-am-not-in-product-config')
 
     def test_sets_expiration_time_in_payload(self):

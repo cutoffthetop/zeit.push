@@ -37,7 +37,7 @@ class Connection(zeit.push.mobile.ConnectionBase):
         # We need channels to define the target audience in order to avoid
         # accidental pushes to *all* devices.
         if not channels:
-            raise AttributeError('No channel given to define target audience.')
+            raise ValueError('No channel given to define target audience.')
 
         audience = {
             'or': [{'tag': channel} for channel in channels],
